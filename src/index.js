@@ -1,8 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Home, Video } from './screens'
+import './index.css'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
 
 const enableMocking = async () => {
   if (process.env.NODE_ENV !== 'development') {
@@ -12,12 +14,23 @@ const enableMocking = async () => {
   return worker.start()
 }
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      { path: '/', element: <Home /> },
+      { path: 'video/:id', element: <Video /> },
+    ],
+  },
+])
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 enableMocking().then(() => {
   root.render(
     <React.StrictMode>
-      <App />
+      <RouterProvider router={router} />
     </React.StrictMode>,
   )
 })
