@@ -38,6 +38,12 @@
   "devDependencies": {
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
+    "msw": "^2.1.7",
     "prettier": "3.2.5"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
