@@ -1,13 +1,22 @@
+import {
+  randUuid,
+  randPhrase,
+  randLine,
+  randNumber,
+  randImg,
+  randPastDate,
+} from '@ngneat/falso'
 import { user } from './users'
 
 const video = ({ id } = {}) => ({
-  id: id || 1,
-  title: 'Video 1',
-  description: 'This is the first video',
-  views: 0,
-  thumbnail: null,
-  timestamp: new Date().toISOString(),
+  id: id || randUuid(),
+  title: randPhrase(),
+  description: randLine(),
+  views: randNumber(),
+  thumbnail: `${randImg({ height: 191, width: 339 })}?${Math.random()}}`,
+  timestamp: randPastDate(),
   author: user(),
+  likes: randNumber(),
 })
 
 export { video }
