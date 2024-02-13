@@ -1,5 +1,6 @@
 import { Link, Outlet } from 'react-router-dom'
 import { NavigationTop } from 'components'
+import { NavigationLeft } from 'components'
 
 const App = () => {
   return (
@@ -7,6 +8,7 @@ const App = () => {
       <header>
         <h1>LAYOUT</h1>
         <NavigationTop />
+        <NavigationLeft />
         <nav>
           <ul>
             <li>
