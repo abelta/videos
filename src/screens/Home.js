@@ -18,7 +18,18 @@ const Home = () => {
       <ul>
         {data.map(video => (
           <li key={video.id}>
-            <Link to={`/video/${video.id}`}>{video.title}</Link>
+            <Link to={`/video/${video.id}`}>
+              <article>
+                <img src={video.thumbnail} alt={video.title} />
+                <p>{video.title}</p>
+                <p>
+                  <img src={video.author.avatar} />
+                </p>
+                <p>{video.author.username}</p>
+                <p>{video.views} views</p>
+                <p>{video.timestamp}</p>
+              </article>
+            </Link>
           </li>
         ))}
       </ul>
