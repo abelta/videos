@@ -1,0 +1,45 @@
+.button {
+  appearance: none;
+  outline: none;
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.button-icon {
+  padding: 8px;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: rgba(0,0,0,0.1);
+  }
+}
+
+.button-outlined {
+  height: 36px;
+  padding: 0 15px;
+
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 18px;
+  color: #065fd4;
+
+  font-size: 14px;
+  line-height: 36px;
+
+  column-gap: 6px;
+
+  &:hover {
+    background-color: #def1ff;
+    border-color: transparent;
+  }
+}
+
+.button-outlined > span {
+  white-space: nowrap;
+}
+
+

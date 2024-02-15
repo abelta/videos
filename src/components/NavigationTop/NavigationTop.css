@@ -1,0 +1,25 @@
+.navigation-top {
+  padding: 0 8px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    padding: 0 16px;
+  }
+}
+
+.navigation-top-left, .navigation-top-center, .navigation-top-right {
+  display: flex;
+  align-items: center;
+}
+
+.navigation-top-left .navigation-logo {
+  width: 100px;
+  padding: 18px 14px 18px 16px;
+}
+
+.navigation-top-center {
+  flex: 0 1 732px;
+}

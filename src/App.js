@@ -6,7 +6,7 @@ const App = () => {
     <div>
       <header>
         <h1>LAYOUT</h1>
-        <NavigationTop />
+        <NavigationTop isLogged/>
         <nav>
           <ul>
             <li>
