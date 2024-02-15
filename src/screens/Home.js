@@ -1,3 +1,4 @@
+import { formatDistanceToNow } from 'date-fns'
 import { Link } from 'react-router-dom'
 import { useHomeVideos } from 'hooks'
 
@@ -27,7 +28,7 @@ const Home = () => {
                 </p>
                 <p>{video.author.username}</p>
                 <p>{video.views} views</p>
-                <p>{video.timestamp}</p>
+                <p>{formatDistanceToNow(video.timestamp)} ago</p>
               </article>
             </Link>
           </li>
