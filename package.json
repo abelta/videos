@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@ngneat/falso": "^7.1.1",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
     "msw": "^2.1.7",
