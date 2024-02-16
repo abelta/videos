@@ -24,7 +24,7 @@ const NavigationTop = ({ isLogged }) => {
   return (
     <nav className='navigation-top'>
       <div className='navigation-top-left'>
-        <Button variant='icon'>
+        <Button variant='clear'>
           <IconBurger />
         </Button>
         <div className='navigation-logo'>
