@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { useMediaQuery } from 'hooks'
+import { useBreakPoint } from 'hooks'
 
 import IconSearch from './IconSearch'
 import IconLeftArrow from './IconLeftArrow'
@@ -10,22 +10,22 @@ import Button from 'components/Button'
 import './SearchInput.css'
 
 const SearchInput = () => {
-  const isMobile = useMediaQuery('(max-width:768px)')
-  const [showSearchInput, setShowSearchInput] = useState(false)
+  const { isMobile } = useBreakPoint()
+  const [isInputShowing, setIsInputShowing] = useState(false)
 
   return (
-    <div className={`search ${showSearchInput ? 'mobile-absolute' : ''}`}>
-      {isMobile && !showSearchInput &&
-        <Button variant="icon" onClick={() => setShowSearchInput(true)}>
+    <div className={`search ${isInputShowing && 'mobile-absolute'}`}>
+      {isMobile && !isInputShowing &&
+        <Button variant="clear" onClick={() => setIsInputShowing(true)}>
           <IconSearch />
         </Button>
       }
-      {isMobile && showSearchInput &&
-        <Button variant="icon" onClick={() => setShowSearchInput(false)}>
+      {isMobile && isInputShowing &&
+        <Button variant="clear" onClick={() => setIsInputShowing(false)}>
           <IconLeftArrow />
         </Button>
       }
-      {(isMobile && showSearchInput) || !isMobile ?
+      {(isMobile && isInputShowing) || !isMobile ?
         <div className='search-wrapper'>
           <div className='search-input'>
             <input className='input' />

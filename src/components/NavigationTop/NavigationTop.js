@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
-import { useMediaQuery } from 'hooks'
+import { useBreakPoint } from 'hooks'
 
 import IconBurger from './IconBurger'
 import IconCreate from './IconCreate'
@@ -18,8 +19,7 @@ import Button from 'components/Button'
 import './NavigationTop.css'
 
 const NavigationTop = ({ isLogged }) => {
-  const isMobile = useMediaQuery('(max-width:768px)')
-  // const avatarImg = "https://www.paradigmadigital.com/assets/img/resize/huge/db942fec18504f9f87e48632617fb9d8.png"
+  const { isMobile } = useBreakPoint();
 
   return (
     <nav className='navigation-top'>
@@ -28,20 +28,22 @@ const NavigationTop = ({ isLogged }) => {
           <IconBurger />
         </Button>
         <div className='navigation-logo'>
-          <LogoYT />
+          <Link>
+            <LogoYT />
+          </Link>
         </div>
       </div>
       <div className='navigation-top-center'>
         <SearchInput />
         {!isMobile && isLogged &&
-          <Button variant="icon">
+          <Button variant="shadow">
             <IconVoice />
           </Button>
         }
       </div>
       <div className='navigation-top-right'>
         {isLogged &&
-          <Button variant="icon">
+          <Button variant="clear">
             <IconCreate />
           </Button>
         }
@@ -52,7 +54,7 @@ const NavigationTop = ({ isLogged }) => {
           </Button>
         }
         {!isMobile && isLogged  &&
-          <Button variant="icon">
+          <Button variant="clear">
             <IconNotification />
           </Button>
         }
