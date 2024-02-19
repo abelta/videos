@@ -1,2 +1,2 @@
 export { default as NavigationTop } from './NavigationTop'
-export { default as NavigationLeft } from './NavigationLeft'
+export { default as NavigationMenu } from './NavigationMenu'

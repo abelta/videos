@@ -1,4 +1,4 @@
-const IconSuscriptions = () => (
+const IconFilms = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -7,8 +7,8 @@ const IconSuscriptions = () => (
     focusable="false"
     style={{ display: 'block', width: '24px', height: '24px' }}
   >
-    <path d="M10 18v-6l5 3-5 3zm7-15H7v1h10V3zm3 3H4v1h16V6zm2 3H2v12h20V9zM3 10h18v10H3V10z"></path>
+    <path d="m22.01 4.91-.5-2.96L1.64 5.19 2 8v13h20V8H3.06l18.95-3.09zM5 9l1 3h3L8 9h2l1 3h3l-1-3h2l1 3h3l-1-3h3v11H3V9h2z"></path>
   </svg>
 )
 
-export default IconSuscriptions
+export default IconFilms
