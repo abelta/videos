@@ -18,6 +18,7 @@ import {
   IconReport,
   IconHelp,
   IconFeedback,
+  IconYou,
 } from './Icons'
 
 export const menuItems = [
@@ -34,6 +35,29 @@ export const menuItems = [
   {
     icon: <IconSubscriptions />,
     title: 'Suscripciones',
+    link: '/',
+  },
+]
+
+export const menuItemsMobile = [
+  {
+    icon: <IconHome />,
+    title: 'Inicio',
+    link: '/',
+  },
+  {
+    icon: <IconShorts />,
+    title: 'Shorts',
+    link: '/',
+  },
+  {
+    icon: <IconSubscriptions />,
+    title: 'Suscripciones',
+    link: '/',
+  },
+  {
+    icon: <IconYou />,
+    title: 'Tú',
     link: '/',
   },
 ]
