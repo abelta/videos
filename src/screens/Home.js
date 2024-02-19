@@ -13,7 +13,7 @@ const Home = () => {
   }
 
   return (
-    <main>
+    <>
       <h1>HOME</h1>
       <ul>
         {data.map(video => (
@@ -33,7 +33,7 @@ const Home = () => {
           </li>
         ))}
       </ul>
-    </main>
+    </>
   )
 }
 

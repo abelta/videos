@@ -5,7 +5,6 @@ const App = () => {
   return (
     <div>
       <header>
-        <h1>LAYOUT</h1>
         <NavigationTop />
         <nav>
           <ul>
