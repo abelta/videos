@@ -18,7 +18,7 @@ VideoCard.propTypes = {
   thumbnail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   views: PropTypes.number.isRequired,
-  timestamp: PropTypes.instanceOf(Date).isRequired,
+  timestamp: PropTypes.string.isRequired,
   author: PropTypes.shape({
     avatar: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,

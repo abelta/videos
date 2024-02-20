@@ -1,37 +1,49 @@
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { useInView } from 'react-intersection-observer'
 import { VideoCard } from 'components'
+import { useHomeVideos } from 'hooks'
+import { useEffect } from 'react'
 
-const VideosList = ({ videos, style }) => {
+const VideosList = ({ style }) => {
+  const { data, error, status, fetchNextPage, isFetchingNextPage } =
+    useHomeVideos()
+
+  const { ref, inView } = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage()
+    }
+  }, [inView, fetchNextPage])
+
+  if (status === 'pending') {
+    return <div>Loading...</div>
+  }
+  if (status === 'error') {
+    return <div>Error: {error.message}</div>
+  }
   return (
     <div style={style}>
       <ul>
-        {videos.map(video => (
-          <li key={video.id}>
-            <Link to={`/video/${video.id}`}>
-              <VideoCard {...video} />
-            </Link>
-          </li>
-        ))}
+        {data.pages.map(page => {
+          return page.videos.map(video => (
+            <li key={video.id}>
+              <Link to={`/video/${video.id}`}>
+                <VideoCard {...video} />
+              </Link>
+            </li>
+          ))
+        })}
       </ul>
+      <div ref={ref} style={{ width: '100%', height: '20px' }}>
+        {isFetchingNextPage && <h1>Loading more...</h1>}
+      </div>
     </div>
   )
 }
 
 VideosList.propTypes = {
-  videos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      thumbnail: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      views: PropTypes.number.isRequired,
-      timestamp: PropTypes.instanceOf(Date).isRequired,
-      author: PropTypes.shape({
-        avatar: PropTypes.string.isRequired,
-        username: PropTypes.string.isRequired,
-      }).isRequired,
-    }),
-  ).isRequired,
   style: PropTypes.object,
 }
 
