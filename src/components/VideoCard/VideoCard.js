@@ -3,10 +3,17 @@ import { formatDistanceToNow } from 'date-fns'
 
 const VideoCard = ({ thumbnail, title, author, views, timestamp }) => (
   <article style={{ width: '100%' }}>
-    <img src={thumbnail} alt={title} style={{ borderRadius: '12px', width: '100%' }} />
+    <img
+      src={thumbnail}
+      alt={title}
+      style={{ borderRadius: '12px', width: '100%' }}
+    />
     <div style={{ display: 'flex' }}>
       <p>
-        <img src={author.avatar} style={{ height: '36px', borderRadius: '50%', marginRight: '12px' }} />
+        <img
+          src={author.avatar}
+          style={{ height: '36px', borderRadius: '50%', marginRight: '12px' }}
+        />
       </p>
       <div style={{ paddingRight: '24px', width: '100%' }}>
         <p>{title}</p>
