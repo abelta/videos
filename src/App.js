@@ -6,7 +6,6 @@ const App = () => {
   return (
     <div>
       <header>
-        <h1>LAYOUT</h1>
         <NavigationTop />
         <NavigationMenu />
         <nav>

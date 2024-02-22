@@ -1,1 +1,9 @@
-export default () => fetch('/home-videos').then(res => res.json())
+export default async ({ page = 0 }) => {
+  const res = await fetch(`/home-videos?page=${page}`)
+  const videos = await res.json()
+  return {
+    videos,
+    currentPage: page,
+    nextPage: page + 1,
+  }
+}
