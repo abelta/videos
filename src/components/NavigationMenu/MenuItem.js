@@ -12,9 +12,9 @@ const MenuItem = ({ icon, title, url }) => {
 }
 
 MenuItem.propTypes = {
-  icon: PropTypes.node,
-  title: PropTypes.string,
-  url: PropTypes.string,
+  icon: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 }
 
 export default MenuItem
