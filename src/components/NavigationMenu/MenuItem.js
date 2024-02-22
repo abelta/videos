@@ -2,17 +2,19 @@ import './NavigationMenu.css'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-const MenuItem = ({ menuItem }) => {
+const MenuItem = ({ icon, title, url }) => {
   return (
-    <Link to={menuItem.link} className="menu--container">
-      {menuItem.icon}
-      <p className="menu--item">{menuItem.title}</p>
+    <Link to={url} className="menu--container">
+      {icon}
+      <p className="menu--item">{title}</p>
     </Link>
   )
 }
 
 MenuItem.propTypes = {
-  menuItem: PropTypes.object,
+  icon: PropTypes.func,
+  title: PropTypes.string,
+  url: PropTypes.string,
 }
 
 export default MenuItem
