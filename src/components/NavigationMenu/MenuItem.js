@@ -12,7 +12,7 @@ const MenuItem = ({ icon, title, url }) => {
 }
 
 MenuItem.propTypes = {
-  icon: PropTypes.func,
+  icon: PropTypes.node,
   title: PropTypes.string,
   url: PropTypes.string,
 }
