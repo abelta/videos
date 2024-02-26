@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw'
 import { user } from './users'
 import { video } from './videos'
+import { tag } from './tags'
 import sleep from 'sleep-promise'
 
 const handlers = [
@@ -18,6 +19,10 @@ const handlers = [
   }),
   http.get('/video/:id', async ({ params: id }) => {
     return HttpResponse.json(video({ id }), { status: 201 })
+  }),
+  http.get('/tags', async () => {
+    const tags = Array.from({ length: 20 }, () => tag())
+    return HttpResponse.json(tags, { status: 201 })
   }),
 ]
 
