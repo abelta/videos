@@ -1,11 +1,13 @@
 import { Link, Outlet } from 'react-router-dom'
 import { NavigationTop } from 'components'
+import { NavigationMenu } from 'components'
 
 const App = () => {
   return (
     <div>
       <header>
         <NavigationTop />
+        <NavigationMenu />
         <nav>
           <ul>
             <li>

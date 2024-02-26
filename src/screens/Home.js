@@ -1,9 +1,12 @@
-import { VideosList } from 'components'
+import { TagsMenu, VideosList } from 'components'
 
 const Home = () => {
   return (
     <>
-      <VideosList style={{ height: '100%', width: '100%' }} />
+      <TagsMenu />
+      <VideosList
+        style={{ height: '100%', width: '100%' }}
+      />
     </>
   )
 }
