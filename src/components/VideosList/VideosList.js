@@ -33,7 +33,7 @@ const VideosList = ({ style }) => {
         <Masonry gutter="16px">
           {data.pages.map(page => {
             return page.videos.map(video => (
-              <li key={video.id} style={{ listStyle: 'none', height: '400px' }}>
+              <li key={video.id} style={{ listStyle: 'none' }}>
                 <Link
                   to={`/video/${video.id}`}
                   style={{ textDecoration: 'none', color: 'black' }}
