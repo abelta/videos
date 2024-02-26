@@ -5,7 +5,7 @@ const Home = () => {
     <>
       <TagsMenu />
       <VideosList
-        style={{ backgroundColor: 'lightgrey', height: '100%', width: '100%' }}
+        style={{ height: '100%', width: '100%' }}
       />
     </>
   )

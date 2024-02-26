@@ -1,18 +1,63 @@
 import PropTypes from 'prop-types'
 import { formatDistanceToNow } from 'date-fns'
+import { useMediaQuery } from 'hooks'
 
-const VideoCard = ({ thumbnail, title, author, views, timestamp }) => (
-  <article>
-    <img src={thumbnail} alt={title} />
-    <p>{title}</p>
-    <p>
-      <img src={author.avatar} />
-    </p>
-    <p>{author.username}</p>
-    <p>{views} views</p>
-    <p>{formatDistanceToNow(timestamp)} ago</p>
-  </article>
-)
+const VideoCard = ({ thumbnail, title, author, views, timestamp }) => {
+  const hasMediaQuery = useMediaQuery('(min-width: 589px)')
+
+  const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
+
+  const formatCompactNumber = number =>
+    number.toLocaleString('en-US', {
+      notation: 'compact',
+    })
+
+  return (
+    <article
+      style={{
+        width: '100%',
+        height: hasMediaQuery ? '330px' : 'auto',
+      }}
+    >
+      <img
+        src={thumbnail}
+        alt={title}
+        style={{ borderRadius: '12px', width: '100%' }}
+      />
+      <div style={{ display: 'flex', marginTop: '12px' }}>
+        <img
+          src={author.avatar}
+          style={{
+            display: 'block',
+            height: '36px',
+            borderRadius: '50%',
+            marginRight: '12px',
+          }}
+        />
+        <div style={{ paddingRight: '24px', width: '100%' }}>
+          <h3
+            style={{
+              margin: '0 0 4px',
+              fontSize: '16px',
+              fontWeight: '500',
+              color: '#0f0f0f',
+            }}
+          >
+            {capitalize(title)}
+          </h3>
+          <p style={{ margin: 0, fontSize: '14px', color: '#606060' }}>
+            {author.username}
+          </p>
+          <p style={{ margin: 0, fontSize: '14px', color: '#606060' }}>
+            <span>{formatCompactNumber(views)} views</span>
+            <span style={{ margin: '0 4px' }}>·</span>
+            <span>{formatDistanceToNow(timestamp)} ago</span>
+          </p>
+        </div>
+      </div>
+    </article>
+  )
+}
 
 VideoCard.propTypes = {
   thumbnail: PropTypes.string.isRequired,
