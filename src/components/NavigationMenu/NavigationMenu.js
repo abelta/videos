@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types'
 import './NavigationMenu.css'
-import React from 'react'
+
 import {
   IconHome,
   IconShorts,
@@ -156,7 +157,7 @@ const menuItemsSettings = [
   },
 ]
 
-const NavigationMenu = () => {
+const NavigationMenu = ({ style }) => {
   const { isMobile, isMobileLarge } = useBreakPoint()
 
   if (isMobile || isMobileLarge) {
@@ -172,7 +173,7 @@ const NavigationMenu = () => {
   }
 
   return (
-    <nav className="navbar--left">
+    <nav className="navbar--left" style={style}>
       <div className="navbar--wrapper">
         {menuItems.map((menuItem, index) => (
           <MenuItem key={index} {...menuItem} />
@@ -201,6 +202,10 @@ const NavigationMenu = () => {
       </div>
     </nav>
   )
+}
+
+NavigationMenu.propTypes = {
+  style: PropTypes.object,
 }
 
 export default NavigationMenu
