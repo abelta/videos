@@ -1,16 +1,10 @@
 import PropTypes from 'prop-types'
 import { formatDistanceToNow } from 'date-fns'
 import { useMediaQuery } from 'hooks'
+import { capitalize, formatCompactNumber } from 'utils'
 
 const VideoCard = ({ thumbnail, title, author, views, timestamp }) => {
   const hasMediaQuery = useMediaQuery('(min-width: 589px)')
-
-  const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
-
-  const formatCompactNumber = number =>
-    number.toLocaleString('en-US', {
-      notation: 'compact',
-    })
 
   return (
     <article

@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { NavigationTop, NavigationMenu } from 'components'
 
 const App = () => {
@@ -7,16 +7,6 @@ const App = () => {
       <header>
         <NavigationTop />
         <NavigationMenu />
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/video/1">Video 1</Link>
-            </li>
-          </ul>
-        </nav>
       </header>
       <main>
         <Outlet />
