@@ -1,10 +1,11 @@
 import { VideoPanel } from 'components'
-import { useVideo } from 'hooks'
+import { useBreakPoint, useVideo } from 'hooks'
 import { useParams } from 'react-router-dom'
 
 const Video = () => {
   const { id } = useParams()
   const { data, status, error } = useVideo(id)
+  const { isMobile, isMobileLarge } = useBreakPoint()
 
   if (status === 'pending') {
     return <div>Loading...</div>
@@ -14,7 +15,7 @@ const Video = () => {
   }
 
   return (
-    <>
+    <div style={{ marginLeft: !isMobile && !isMobileLarge ? '250px' : 0 }}>
       <VideoPanel
         style={{ padding: '16px' }}
         thumbnail={data.thumbnail}
@@ -27,7 +28,7 @@ const Video = () => {
         likes={data.likes}
       />
       {/* video panel info */}
-    </>
+    </div>
   )
 }
 
