@@ -1,4 +1,4 @@
-import { VideoPanel } from 'components'
+import { VideoPanel, VideoPanelInfo } from 'components'
 import { useBreakPoint, useVideo } from 'hooks'
 import { useParams } from 'react-router-dom'
 
@@ -27,7 +27,14 @@ const Video = () => {
         }}
         likes={data.likes}
       />
-      {/* video panel info */}
+      <VideoPanelInfo
+        style={{ padding: '16px' }}
+        video={{
+          description: data.description,
+          views: data.views,
+          timestamp: data.timestamp,
+        }}
+      />
     </div>
   )
 }
