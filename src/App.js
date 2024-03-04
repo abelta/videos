@@ -1,9 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { NavigationTop, NavigationMenu } from 'components'
 
 const App = () => {
-  const [isMenuOpen, setMenuOpen] = useState(true)
+  const [isMenuOpen, setMenuOpen] = useState(
+    localStorage.getItem('isMenuOpen') === 'true' || false,
+  )
+
+  useEffect(() => {
+    console.log('isMenuOpen', isMenuOpen)
+    localStorage.setItem('isMenuOpen', isMenuOpen)
+  }, [isMenuOpen])
 
   return (
     <>
@@ -13,6 +20,7 @@ const App = () => {
       />
 
       <NavigationMenu
+        isOpen={isMenuOpen}
         style={{
           position: 'fixed',
           top: '58px',
@@ -31,7 +39,6 @@ const App = () => {
           transition: '0.25s all',
           left: isMenuOpen ? '250px' : '100px',
           width: `calc(100% - ${isMenuOpen ? '250px' : '100px'})`,
-          // overflowY: 'scroll',
         }}
       >
         <Outlet />

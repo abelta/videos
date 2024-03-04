@@ -157,8 +157,33 @@ const menuItemsSettings = [
   },
 ]
 
-const NavigationMenu = ({ style }) => {
+const NavigationMenu = ({ isOpen = true, style }) => {
   const { isMobile, isMobileLarge } = useBreakPoint()
+
+  if (!isMobile && !isMobileLarge && !isOpen) {
+    return (
+      <nav className="navbar--left">
+        <div className="navbar--wrapper">
+          {menuItemsMobile.map(({ icon, title, url }) => (
+            <Link
+              to={url}
+              key={title}
+              className="menu--container"
+              style={{
+                width: '50px',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {icon}
+            </Link>
+          ))}
+        </div>
+      </nav>
+    )
+  }
 
   if (isMobile || isMobileLarge) {
     return (
@@ -205,6 +230,7 @@ const NavigationMenu = ({ style }) => {
 }
 
 NavigationMenu.propTypes = {
+  isOpen: PropTypes.bool,
   style: PropTypes.object,
 }
 
