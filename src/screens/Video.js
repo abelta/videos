@@ -34,6 +34,11 @@ const Video = () => {
           views: data.views,
           timestamp: data.timestamp,
         }}
+        author={{
+          avatar: data.author.avatar,
+          username: data.author.username,
+          subscribers: data.author.subscriberNumber,
+        }}
       />
     </div>
   )
