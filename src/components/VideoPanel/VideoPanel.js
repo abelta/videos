@@ -6,15 +6,19 @@ import animationData from '../../lotties/like-animation'
 import { IconLikes } from 'components/NavigationMenu/Icons'
 import { useState } from 'react'
 import Button from 'components/Button'
+import IconShare from './IconShare'
+import IconAdd from './IconAdd'
+import IconMeatball from './IconMeatball'
+import IconDislike from './IconDislike'
+import IconDislikeFilled from './IconDislikeFilled'
 
 const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
   const { isMobile } = useBreakPoint()
   const [isLottiePaused, setIsLottiePaused] = useState(true)
   const [isLottieHidden, setIsLottieHidden] = useState(true)
+  const [isDislikeActive, setIsDislikeActive] = useState(false)
 
-  const handleClickLikes = ev => {
-    ev.preventDefault()
-
+  const handleClickLikes = () => {
     setIsLottiePaused(!isLottiePaused)
     setIsLottieHidden(!isLottieHidden)
   }
@@ -43,16 +47,18 @@ const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
         alt=""
         style={{ display: 'block', width: '100%', borderRadius: '12px' }}
       />
-      <h1 style={{ fontSize: isMobile ? '18px' : '20px' }}>
+      <h1 style={{ fontSize: isMobile ? '18px' : '20px', margin: '12px 0' }}>
         {capitalize(title)}
       </h1>
       <div
         style={{
           display: 'flex',
           justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          rowGap: '12px',
         }}
       >
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <img
             src={author.avatar}
             alt=""
@@ -63,7 +69,7 @@ const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
               marginRight: '12px',
             }}
           />
-          <div>
+          <div style={{ marginRight: '24px' }}>
             <a
               style={{
                 margin: 0,
@@ -88,15 +94,65 @@ const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
               {formatCompactNumber(author.subscribers)} subscribers
             </p>
           </div>
-        </div>
-        <div>
           <Button
             style={{ borderRadius: '50px', height: '36px' }}
             variant="shadow"
-            icon={buttonLikeIcon}
-            onClick={handleClickLikes}
           >
-            {formatCompactNumber(likes)}
+            Suscribirme
+          </Button>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            columnGap: '8px',
+          }}
+        >
+          <div style={{ display: 'flex' }}>
+            <Button
+              style={{ borderRadius: '50px 0 0 50px', height: '36px' }}
+              variant="shadow"
+              icon={buttonLikeIcon}
+              onClick={handleClickLikes}
+            >
+              {formatCompactNumber(likes)}
+            </Button>
+            <Button
+              style={{ borderRadius: '0 50px 50px 0', height: '36px' }}
+              variant="shadow"
+              onClick={() => setIsDislikeActive(!isDislikeActive)}
+            >
+              <div
+                style={{
+                  background: 'rgba(0,0,0,0.1)',
+                  position: 'absolute',
+                  left: '0',
+                  top: '6px',
+                  height: '24px',
+                  width: '1px',
+                }}
+              />
+              {isDislikeActive ? <IconDislikeFilled /> : <IconDislike />}
+            </Button>
+          </div>
+          <Button
+            style={{ borderRadius: '50px', height: '36px' }}
+            variant="shadow"
+            icon={<IconShare />}
+          >
+            Compartir
+          </Button>
+          <Button
+            style={{ borderRadius: '50px', height: '36px' }}
+            variant="shadow"
+            icon={<IconAdd />}
+          >
+            Guardar
+          </Button>
+          <Button
+            style={{ height: '36px', width: '36px', justifyContent: 'center' }}
+            variant="shadow"
+          >
+            <IconMeatball />
           </Button>
         </div>
       </div>

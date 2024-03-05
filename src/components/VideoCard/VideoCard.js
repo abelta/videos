@@ -10,7 +10,7 @@ const VideoCard = ({ thumbnail, title, author, views, timestamp }) => {
     <article
       style={{
         width: '100%',
-        height: hasMediaQuery ? '330px' : 'auto',
+        height: hasMediaQuery ? '350px' : 'auto',
       }}
     >
       <img
