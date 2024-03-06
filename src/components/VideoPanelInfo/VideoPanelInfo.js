@@ -187,7 +187,7 @@ VideoPanelInfo.propTypes = {
   video: PropTypes.shape({
     description: PropTypes.string.isRequired,
     views: PropTypes.number.isRequired,
-    timestamp: PropTypes.number.isRequired,
+    timestamp: PropTypes.string.isRequired,
   }).isRequired,
   author: PropTypes.shape({
     avatar: PropTypes.string.isRequired,

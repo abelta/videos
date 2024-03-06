@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 
 const useBreakPoint = () => {
   const [breakPoints, setBreakPoints] = useState({
-    isMobile: false,
-    isMobileLarge: false,
+    mobile: false,
+    mobileLarge: false,
   })
 
   useEffect(() => {

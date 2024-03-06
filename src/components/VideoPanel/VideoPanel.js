@@ -1,8 +1,9 @@
 import { useBreakPoint } from 'hooks'
 import PropTypes from 'prop-types'
-import Lottie from 'react-lottie'
+import Lottie from 'lottie-react'
 import { capitalize, formatCompactNumber } from 'utils'
-import animationData from '../../lotties/like-animation'
+import animationLike from '../../lotties/like-animation'
+import animationSubscribe from '../../lotties/bell-animation'
 import { IconLikes } from 'components/NavigationMenu/Icons'
 import { useState } from 'react'
 import Button from 'components/Button'
@@ -14,31 +15,33 @@ import IconDislikeFilled from './IconDislikeFilled'
 
 const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
   const { isMobile } = useBreakPoint()
-  const [isLottiePaused, setIsLottiePaused] = useState(true)
-  const [isLottieHidden, setIsLottieHidden] = useState(true)
+  const [isLottieLikePaused, setIsLottieLikePaused] = useState(true)
+  const [isLottieLikeHidden, setIsLottieLikeHidden] = useState(true)
   const [isDislikeActive, setIsDislikeActive] = useState(false)
-
-  const handleClickLikes = () => {
-    setIsLottiePaused(!isLottiePaused)
-    setIsLottieHidden(!isLottieHidden)
-  }
+  const [isSubscribed, setIsSubscribed] = useState(false)
 
   const buttonLikeIcon = (
     <>
-      <IconLikes opacity={isLottieHidden ? '1' : '0'} />
-      {!isLottieHidden && (
+      <IconLikes opacity={isLottieLikeHidden ? '1' : '0'} />
+      {!isLottieLikeHidden && (
         <Lottie
-          isClickToPauseDisabled
-          isStopped={isLottiePaused}
-          isPaused={isLottiePaused}
-          width={50}
-          height={50}
-          style={{ position: 'absolute', top: '-50%', left: '-50%' }}
-          options={{ animationData, loop: false }}
+          style={{
+            position: 'absolute',
+            top: '-50%',
+            left: '-50%',
+            width: '50px',
+          }}
+          animationData={animationLike}
+          loop={false}
         />
       )}
     </>
   )
+
+  const handleClickLikes = () => {
+    setIsLottieLikePaused(!isLottieLikePaused)
+    setIsLottieLikeHidden(!isLottieLikeHidden)
+  }
 
   return (
     <div style={style}>
@@ -95,10 +98,29 @@ const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
             </p>
           </div>
           <Button
-            style={{ borderRadius: '50px', height: '36px' }}
+            style={{
+              borderRadius: '50px',
+              height: '36px',
+              color: !isSubscribed && '#ffffff',
+              backgroundColor: !isSubscribed && '#0f0f0f',
+              fontWeight: 500,
+            }}
             variant="shadow"
+            onClick={() => setIsSubscribed(!isSubscribed)}
+            icon={
+              isSubscribed && (
+                <Lottie
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                  }}
+                  animationData={animationSubscribe}
+                  loop={false}
+                />
+              )
+            }
           >
-            Suscribirme
+            {!isSubscribed ? 'Suscribirme' : 'Suscrito'}
           </Button>
         </div>
         <div
