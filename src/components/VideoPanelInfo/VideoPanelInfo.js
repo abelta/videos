@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { useBreakPoint } from 'hooks'
 import PropTypes from 'prop-types'
 import { formatDistanceToNow } from 'date-fns'
 import { formatCompactNumber } from 'utils'
@@ -6,17 +7,19 @@ import { AboutIcon, VideoIcon } from './Icons'
 
 const VideoPanelInfo = ({ video, author }) => {
   const [showFullDescription, setShowFullDescription] = useState(false)
+  const { isMobile } = useBreakPoint()
 
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription)
   }
 
-  const getLastWordBeforeMore = () => {
-    const words = video.description.split(' ')
-    const truncatedWords = words.slice(0, 1000)
-    const lastWord = truncatedWords[truncatedWords.length - 1]
-    return lastWord
-  }
+  // const getLastWordBeforeMore = () => {
+  //   const words = video.description.split(' ')
+  //   const sliceLength = isMobile ? 100 : 500
+  //   const truncatedWords = words.slice(0, sliceLength)
+  //   const lastWord = truncatedWords[truncatedWords.length - 1]
+  //   return lastWord
+  // }
 
   return (
     <div style={{ background: '#dbdbdb', borderRadius: '10px' }}>
@@ -86,7 +89,7 @@ const VideoPanelInfo = ({ video, author }) => {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      width: '400px',
+                      width: isMobile ? '138px' : '400px',
                       height: '40px',
                       fontSize: '18px',
                       borderRadius: '20px',
@@ -115,7 +118,7 @@ const VideoPanelInfo = ({ video, author }) => {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      width: '400px',
+                      width: isMobile ? '138px' : '400px',
                       height: '40px',
                       fontSize: '18px',
                       borderRadius: '20px',
@@ -141,8 +144,8 @@ const VideoPanelInfo = ({ video, author }) => {
             </>
           ) : (
             <>
-              {video.description.slice(0, 1000)}
-              <span
+              {video.description.slice(0, isMobile ? 100 : 500)}
+              {/* <span
                 style={{
                   backgroundImage:
                     'linear-gradient(to right, transparent 80%, transparent 100%)',
@@ -151,10 +154,10 @@ const VideoPanelInfo = ({ video, author }) => {
               >
                 {getLastWordBeforeMore()}
               </span>
-              ...
+              ... */}
             </>
           )}
-          {video.description.length > 1000 && (
+          {video.description.length > (isMobile ? 100 : 500) && (
             <button
               onClick={toggleDescription}
               style={{
