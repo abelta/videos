@@ -21,6 +21,7 @@ const VideoCard = ({ thumbnail, title, author, views, timestamp }) => {
       <div style={{ display: 'flex', marginTop: '12px' }}>
         <img
           src={author.avatar}
+          alt=""
           style={{
             display: 'block',
             height: '36px',
