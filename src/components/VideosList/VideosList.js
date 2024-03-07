@@ -28,7 +28,7 @@ const VideosList = ({ style }) => {
     <div style={style}>
       <ResponsiveMasonry
         columnsCountBreakPoints={{ 320: 1, 588: 2, 874: 3, 1160: 4 }}
-        style={{ margin: '0 16px' }}
+        style={{ margin: '0px 16px' }}
       >
         <Masonry gutter="16px">
           {data.pages.map(page => {

@@ -18,59 +18,60 @@ import Button from 'components/Button'
 
 import './NavigationTop.css'
 
-const NavigationTop = ({ isLogged }) => {
-  const { isMobile } = useBreakPoint();
+const NavigationTop = ({ isLogged, setMenuOpen }) => {
+  const { isMobile } = useBreakPoint()
 
   return (
-    <nav className='navigation-top'>
-      <div className='navigation-top-left'>
-        <Button variant='clear'>
+    <nav className="navigation-top">
+      <div className="navigation-top-left">
+        <Button variant="clear" onClick={setMenuOpen}>
           <IconBurger />
         </Button>
-        <div className='navigation-logo'>
+        <div className="navigation-logo">
           <Link>
             <LogoYT />
           </Link>
         </div>
       </div>
-      <div className='navigation-top-center'>
+      <div className="navigation-top-center">
         <SearchInput />
-        {!isMobile && isLogged &&
+        {!isMobile && isLogged && (
           <Button variant="shadow">
             <IconVoice />
           </Button>
-        }
+        )}
       </div>
-      <div className='navigation-top-right'>
-        {isLogged &&
+      <div className="navigation-top-right">
+        {isLogged && (
           <Button variant="clear">
             <IconCreate />
           </Button>
-        }
-        {
-          !isLogged &&
+        )}
+        {!isLogged && (
           <Button>
             <IconKebab />
           </Button>
-        }
-        {!isMobile && isLogged  &&
+        )}
+        {!isMobile && isLogged && (
           <Button variant="clear">
             <IconNotification />
           </Button>
-        }
-        {!isLogged ?
-          <Button icon={<IconUser/>} variant="outlined">
+        )}
+        {!isLogged ? (
+          <Button icon={<IconUser />} variant="outlined">
             <span>Inicio sesión</span>
           </Button>
-          : <Avatar />
-        }
+        ) : (
+          <Avatar />
+        )}
       </div>
     </nav>
   )
 }
 
 NavigationTop.propTypes = {
-  isLogged: PropTypes.bool
+  isLogged: PropTypes.bool,
+  setMenuOpen: PropTypes.func,
 }
 
 export default NavigationTop
