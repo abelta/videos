@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { React, useState } from 'react'
 import { useBreakPoint } from 'hooks'
 import PropTypes from 'prop-types'
 import { formatDistanceToNow } from 'date-fns'
@@ -7,7 +7,9 @@ import { AboutIcon, VideoIcon } from './Icons'
 
 const VideoPanelInfo = ({ video, author }) => {
   const [showFullDescription, setShowFullDescription] = useState(false)
-  const { isMobile } = useBreakPoint()
+  const { isMobile, isMobileLarge } = useBreakPoint()
+  const isMobileView = isMobile || isMobileLarge
+  console.log(isMobile)
 
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription)
@@ -89,7 +91,7 @@ const VideoPanelInfo = ({ video, author }) => {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      width: isMobile ? '138px' : '400px',
+                      width: isMobileView ? '138px' : '400px',
                       height: '40px',
                       fontSize: '18px',
                       borderRadius: '20px',
@@ -118,7 +120,7 @@ const VideoPanelInfo = ({ video, author }) => {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      width: isMobile ? '138px' : '400px',
+                      width: isMobileView ? '138px' : '400px',
                       height: '40px',
                       fontSize: '18px',
                       borderRadius: '20px',
@@ -144,7 +146,7 @@ const VideoPanelInfo = ({ video, author }) => {
             </>
           ) : (
             <>
-              {video.description.slice(0, isMobile ? 100 : 500)}
+              {video.description.slice(0, isMobileView ? 100 : 500)}
               {/* <span
                 style={{
                   backgroundImage:
@@ -157,7 +159,7 @@ const VideoPanelInfo = ({ video, author }) => {
               ... */}
             </>
           )}
-          {video.description.length > (isMobile ? 100 : 500) && (
+          {video.description.length > 500 && (
             <button
               onClick={toggleDescription}
               style={{
