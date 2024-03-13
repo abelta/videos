@@ -8,7 +8,6 @@ const App = () => {
   )
 
   useEffect(() => {
-    console.log('isMenuOpen', isMenuOpen)
     localStorage.setItem('isMenuOpen', isMenuOpen)
   }, [isMenuOpen])
 

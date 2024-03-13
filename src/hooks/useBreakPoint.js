@@ -20,7 +20,7 @@ const useBreakPoint = () => {
 
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-  console.log(window.innerWidth)
+
   return {
     isMobile: breakPoints.mobile,
     isMobileLarge: breakPoints.mobileLarge,
