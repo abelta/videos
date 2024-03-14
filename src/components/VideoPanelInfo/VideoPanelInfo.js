@@ -15,14 +15,6 @@ const VideoPanelInfo = ({ video, author }) => {
     setShowFullDescription(!showFullDescription)
   }
 
-  // const getLastWordBeforeMore = () => {
-  //   const words = video.description.split(' ')
-  //   const sliceLength = isMobile ? 100 : 500
-  //   const truncatedWords = words.slice(0, sliceLength)
-  //   const lastWord = truncatedWords[truncatedWords.length - 1]
-  //   return lastWord
-  // }
-
   return (
     <div style={{ background: '#dbdbdb', borderRadius: '10px' }}>
       <div
@@ -43,7 +35,6 @@ const VideoPanelInfo = ({ video, author }) => {
       </div>
       <div style={{ padding: '10px' }}>
         <span style={{ margin: '10px' }}>
-          {' '}
           {showFullDescription ? (
             <>
               {video.description}
@@ -145,19 +136,7 @@ const VideoPanelInfo = ({ video, author }) => {
               </div>
             </>
           ) : (
-            <>
-              {video.description.slice(0, isMobileView ? 100 : 500)}
-              {/* <span
-                style={{
-                  backgroundImage:
-                    'linear-gradient(to right, transparent 80%, transparent 100%)',
-                  display: 'inline-block',
-                }}
-              >
-                {getLastWordBeforeMore()}
-              </span>
-              ... */}
-            </>
+            <>{video.description.slice(0, isMobileView ? 100 : 500)}</>
           )}
           {video.description.length > 500 && (
             <button
