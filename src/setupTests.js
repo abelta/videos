@@ -2,10 +2,10 @@
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
-import "@testing-library/jest-dom";
-import "../jest.polyfills"
-import server from "../src/mocks/node"
+import '@testing-library/jest-dom'
+import '../jest.polyfills'
+import server from './mocks/node'
 
- beforeAll(() => server.listen())
-beforeEach(() => server.resetHandlers());
-afterAll(() => server.close());
+beforeAll(() => server.listen())
+afterEach(() => server.resetHandlers())
+afterAll(() => server.close())
