@@ -2,8 +2,7 @@ import { useBreakPoint } from 'hooks'
 import PropTypes from 'prop-types'
 import Lottie from 'lottie-react'
 import { capitalize, formatCompactNumber } from 'utils'
-import animationLike from '../../lotties/like-animation'
-import animationSubscribe from '../../lotties/bell-animation'
+import { LikeAnimation, BellAnimation } from 'lotties'
 import { IconLikes } from 'components/NavigationMenu/Icons'
 import { useState } from 'react'
 import Button from 'components/Button'
@@ -30,7 +29,7 @@ const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
             left: '-50%',
             width: '50px',
           }}
-          animationData={animationLike}
+          animationData={LikeAnimation}
           loop={false}
         />
       )}
@@ -108,7 +107,7 @@ const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
                     width: '24px',
                     height: '24px',
                   }}
-                  animationData={animationSubscribe}
+                  animationData={BellAnimation}
                   loop={false}
                 />
               )

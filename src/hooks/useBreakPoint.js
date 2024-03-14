@@ -2,15 +2,15 @@ import { useState, useEffect } from 'react'
 
 const useBreakPoint = () => {
   const [breakPoints, setBreakPoints] = useState({
-    mobile: false,
-    mobileLarge: false,
+    isMobile: false,
+    isMobileLarge: false,
   })
 
   useEffect(() => {
     const handleResize = () => {
       setBreakPoints({
-        mobile: window.innerWidth < 425,
-        mobileLarge: window.innerWidth >= 425 && window.innerWidth < 768,
+        isMobile: window.innerWidth < 425,
+        isMobileLarge: window.innerWidth >= 425 && window.innerWidth < 768,
       })
     }
 
@@ -22,8 +22,8 @@ const useBreakPoint = () => {
   }, [])
 
   return {
-    isMobile: breakPoints.mobile,
-    isMobileLarge: breakPoints.mobileLarge,
+    isMobile: breakPoints.isMobile,
+    isMobileLarge: breakPoints.isMobileLarge,
   }
 }
 
