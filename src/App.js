@@ -8,7 +8,6 @@ const App = () => {
   )
 
   useEffect(() => {
-    console.log('isMenuOpen', isMenuOpen)
     localStorage.setItem('isMenuOpen', isMenuOpen)
   }, [isMenuOpen])
 
@@ -38,6 +37,7 @@ const App = () => {
           height: 'calc(100% - 58px)',
           transition: '0.25s all',
           left: isMenuOpen ? '250px' : '100px',
+          overflowY: 'scroll',
           width: `calc(100% - ${isMenuOpen ? '250px' : '100px'})`,
         }}
       >

@@ -23,7 +23,6 @@ const Home = () => {
           height: 'calc(100% - 60px)',
           width: '100%',
           position: 'relative',
-          overflowY: 'scroll',
         }}
       />
     </div>
