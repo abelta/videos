@@ -15,7 +15,6 @@ import IconDislikeFilled from './IconDislikeFilled'
 
 const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
   const { isMobile } = useBreakPoint()
-  const [isLottieLikePaused, setIsLottieLikePaused] = useState(true)
   const [isLottieLikeHidden, setIsLottieLikeHidden] = useState(true)
   const [isDislikeActive, setIsDislikeActive] = useState(false)
   const [isSubscribed, setIsSubscribed] = useState(false)
@@ -37,11 +36,6 @@ const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
       )}
     </>
   )
-
-  const handleClickLikes = () => {
-    setIsLottieLikePaused(!isLottieLikePaused)
-    setIsLottieLikeHidden(!isLottieLikeHidden)
-  }
 
   return (
     <div style={style}>
@@ -134,7 +128,7 @@ const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
               style={{ borderRadius: '50px 0 0 50px', height: '36px' }}
               variant="shadow"
               icon={buttonLikeIcon}
-              onClick={handleClickLikes}
+              onClick={() => setIsLottieLikeHidden(!isLottieLikeHidden)}
             >
               {formatCompactNumber(likes)}
             </Button>

@@ -9,7 +9,6 @@ const VideoPanelInfo = ({ video, author }) => {
   const [showFullDescription, setShowFullDescription] = useState(false)
   const { isMobile, isMobileLarge } = useBreakPoint()
   const isMobileView = isMobile || isMobileLarge
-  console.log(isMobile)
 
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription)
