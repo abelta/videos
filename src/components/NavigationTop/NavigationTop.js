@@ -18,13 +18,13 @@ import Button from 'components/Button'
 
 import './NavigationTop.css'
 
-const NavigationTop = ({ isLogged, setMenuOpen }) => {
+const NavigationTop = ({ ariaLabel, isLogged, setMenuOpen }) => {
   const { isMobile } = useBreakPoint()
 
   return (
-    <nav className="navigation-top">
+    <nav aria-label={ariaLabel} className="navigation-top">
       <div className="navigation-top-left">
-        <Button variant="clear" onClick={setMenuOpen}>
+        <Button ariaLabel="menu-burguer" variant="clear" onClick={setMenuOpen}>
           <IconBurger />
         </Button>
         <div className="navigation-logo">
@@ -33,6 +33,7 @@ const NavigationTop = ({ isLogged, setMenuOpen }) => {
           </Link>
         </div>
       </div>
+
       <div className="navigation-top-center">
         <SearchInput />
         {!isMobile && isLogged && (
@@ -70,6 +71,7 @@ const NavigationTop = ({ isLogged, setMenuOpen }) => {
 }
 
 NavigationTop.propTypes = {
+  ariaLabel: PropTypes.string,
   isLogged: PropTypes.bool,
   setMenuOpen: PropTypes.func,
 }

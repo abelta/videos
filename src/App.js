@@ -14,11 +14,13 @@ const App = () => {
   return (
     <>
       <NavigationTop
+        ariaLabel="navigation-menu-top"
         setMenuOpen={() => setMenuOpen(!isMenuOpen)}
         style={{ position: 'fixed', top: 0, left: 0, width: '100%' }}
       />
 
       <NavigationMenu
+        ariaLabel="navigation-menu-sidebar-left"
         isOpen={isMenuOpen}
         style={{
           position: 'fixed',
