@@ -1,4 +1,4 @@
-import { VideoPanel, VideoPanelInfo } from 'components'
+import { VideoPanel, VideoPanelInfo, CommentsSection } from 'components'
 import { useVideo } from 'hooks'
 import { useParams } from 'react-router-dom'
 
@@ -39,6 +39,7 @@ const Video = () => {
           subscribers: data.author.subscriberNumber,
         }}
       />
+      <CommentsSection style={{ padding: '16px' }} />
     </>
   )
 }
