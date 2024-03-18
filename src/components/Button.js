@@ -15,8 +15,14 @@ const Button = ({
     style={style}
     onClick={onClick}
   >
-    {icon && icon}
-    <span>{children}</span>
+    {icon && (
+      <div
+        style={{ position: 'relative', marginRight: '4px', display: 'flex' }}
+      >
+        {icon}
+      </div>
+    )}
+    <span style={{ display: 'flex' }}>{children}</span>
   </button>
 )
 

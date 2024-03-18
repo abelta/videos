@@ -13,7 +13,7 @@ const TagsMenu = ({ style }) => {
   const { ref: refLast, inView: inViewLast } = useInView()
 
   return (
-    <div style={{ position: 'relative', ...style }}>
+    <div style={{ overflow: 'hidden', ...style }}>
       <span
         style={{
           background:
@@ -52,7 +52,7 @@ const TagsMenu = ({ style }) => {
       <nav
         style={{
           width: '100%',
-          padding: '4px',
+          padding: '10px',
           display: 'flex',
           flexDirection: 'row',
           columnGap: '20px',
