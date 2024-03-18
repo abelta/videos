@@ -157,12 +157,12 @@ const menuItemsSettings = [
   },
 ]
 
-const NavigationMenu = ({ isOpen = true, style }) => {
+const NavigationMenu = ({ ariaLabel, isOpen = true, style }) => {
   const { isMobile, isMobileLarge } = useBreakPoint()
 
   if (!isMobile && !isMobileLarge && !isOpen) {
     return (
-      <nav className="navbar--left">
+      <nav aria-label={ariaLabel} className="navbar--left">
         <div className="navbar--wrapper">
           {menuItemsMobile.map(({ icon, title, url }) => (
             <Link
@@ -230,6 +230,7 @@ const NavigationMenu = ({ isOpen = true, style }) => {
 }
 
 NavigationMenu.propTypes = {
+  ariaLabel: PropTypes.string,
   isOpen: PropTypes.bool,
   style: PropTypes.object,
 }
