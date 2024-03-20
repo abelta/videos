@@ -22,7 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:coverage": "jest -- --coverage --watchAll",
+    "test:coverage": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@ngneat/falso": "^7.1.1",
     "@testing-library/react": "^14.2.1",
     "eslint": "^8.56.0",
@@ -51,9 +52,10 @@
       "public"
     ]
   },
-  "jest": {   
+  "jest": {
     "transformIgnorePatterns": [
       "/node_modules/(?!(@bundled-es-modules)/).*/"
-      ]
+    ],
+    "coveragePathIgnorePatterns": ["/node_modules/", "Icon", "/index\\.js$", "/mocks/"]
   }
 }
