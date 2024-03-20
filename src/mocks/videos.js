@@ -5,8 +5,10 @@ import {
   randNumber,
   randImg,
   randPastDate,
+  toCollection,
 } from '@ngneat/falso'
 import { user } from './users'
+import { comment } from './comments'
 
 const video = ({ id } = {}) => ({
   id: id || randUuid(),
@@ -17,6 +19,9 @@ const video = ({ id } = {}) => ({
   timestamp: randPastDate(),
   author: user(),
   likes: randNumber(),
+  comments: toCollection(() => comment(), {
+    length: randNumber({ min: 0, max: 500 }),
+  }),
 })
 
 export { video }

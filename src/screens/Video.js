@@ -39,7 +39,15 @@ const Video = () => {
           subscribers: data.author.subscriberNumber,
         }}
       />
-      <CommentsSection style={{ padding: '16px' }} />
+      <CommentsSection
+        style={{ padding: '16px' }}
+        author={{
+          avatar: data.author.avatar,
+          username: data.author.username,
+          subscribers: data.author.subscriberNumber,
+        }}
+        comments={data.comments}
+      />
     </>
   )
 }
