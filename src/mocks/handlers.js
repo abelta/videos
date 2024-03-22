@@ -6,10 +6,9 @@ import sleep from 'sleep-promise'
 
 const handlers = [
   http.post('/login', async () => {
-    return new HttpResponse(JSON.stringify(user()), {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    return HttpResponse.json(user(), {
+      headers: { 'Content-Type': 'application/json' },
+      status: 201,
     })
   }),
   http.get('/home-videos', async () => {

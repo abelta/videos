@@ -18,39 +18,67 @@ import Avatar from './Avatar'
 import Button from 'components/Button'
 
 import './NavigationTop.css'
+import useLogin from 'hooks/useLogin'
 
-const NavigationTop = ({ isLogged, setMenuOpen }) => {
+const NavigationTop = ({ ariaLabel, isLogged, setMenuOpen }) => {
   const { isMobile } = useBreakPoint()
+  const { mutate } = useLogin()
+
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [form, setForm] = useState({ email: '', password: '' })
+  const [emailError, setEmailError] = useState(null)
+  const [passwordError, setPasswordError] = useState(null)
 
   const handleChangeForm = e => {
     setForm({ ...form, [e.currentTarget.name]: e.currentTarget.value })
   }
 
-  const loginUser = async credentials => {
-    return fetch('/login', {
-      method: 'POST',
-      body: JSON.stringify(credentials),
-    })
+  const emailValidation = email => {
+    const regEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
+    if (!email || email.length === 0) {
+      setEmailError('Email cannot be empty')
+    } else if (!regEx.test(email)) {
+      setEmailError('Invalid email provided')
+    }
+
+    return null
   }
+
+  const passwordValidation = password => {
+    const regEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
+    if (!password || password.length === 0) {
+      setPasswordError('Password cannot be empty')
+    } else if (!regEx.test(password)) {
+      setPasswordError('Invalid password provided')
+    }
+
+    return null
+  }
+
+  console.log(emailError, passwordError)
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const response = await loginUser(form)
+    const isEmailValid = emailValidation(form.email)
+    const isPasswordValid = passwordValidation(form.password)
+    const isFormValid = isEmailValid && isPasswordValid
 
-    console.log(response)
-
-    if (response.status === 200) {
-      setIsModalOpen(false)
+    if (isFormValid) {
+      await mutate(form)
     }
   }
 
   return (
     <>
-      <nav className="navigation-top">
+      <nav aria-label={ariaLabel} className="navigation-top">
         <div className="navigation-top-left">
-          <Button variant="clear" onClick={setMenuOpen}>
+          <Button
+            ariaLabel="menu-burguer"
+            variant="clear"
+            onClick={setMenuOpen}
+          >
             <IconBurger />
           </Button>
           <div className="navigation-logo">
@@ -121,15 +149,25 @@ const NavigationTop = ({ isLogged, setMenuOpen }) => {
               flexDirection: ' column',
             }}
           >
-            <form onSubmit={handleSubmit}>
-              <input type="text" name="email" onChange={handleChangeForm} />
-              <input
-                type="password"
-                name="password"
-                onChange={handleChangeForm}
-              />
-              <input type="submit" value="Enviar" />
-            </form>
+            <div>
+              <div>
+                <input type="text" name="email" onChange={handleChangeForm} />
+                {emailError && (
+                  <span style={{ color: 'red' }}>{emailError}</span>
+                )}
+              </div>
+              <div>
+                <input
+                  type="password"
+                  name="password"
+                  onChange={handleChangeForm}
+                />
+                {passwordError && (
+                  <span style={{ color: 'red' }}>{passwordError}</span>
+                )}
+              </div>
+              <Button onClick={handleSubmit}>Enviar</Button>
+            </div>
           </div>
         </div>
       )}
@@ -138,6 +176,7 @@ const NavigationTop = ({ isLogged, setMenuOpen }) => {
 }
 
 NavigationTop.propTypes = {
+  ariaLabel: PropTypes.string,
   isLogged: PropTypes.bool,
   setMenuOpen: PropTypes.func,
 }
