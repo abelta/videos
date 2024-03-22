@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 
 const Pill = ({ children, style }) => (
   <span
+    data-testid="pill"
     style={{
       height: '24px',
       padding: '4px 14px',

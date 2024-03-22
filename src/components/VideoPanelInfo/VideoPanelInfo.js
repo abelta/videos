@@ -15,7 +15,10 @@ const VideoPanelInfo = ({ video, author }) => {
   }
 
   return (
-    <div style={{ background: '#dbdbdb', borderRadius: '10px' }}>
+    <div
+      style={{ background: '#dbdbdb', borderRadius: '10px' }}
+      data-testid="video-panel-info"
+    >
       <div
         style={{
           display: 'flex',
@@ -170,7 +173,7 @@ VideoPanelInfo.propTypes = {
   video: PropTypes.shape({
     description: PropTypes.string.isRequired,
     views: PropTypes.number.isRequired,
-    timestamp: PropTypes.string.isRequired,
+    timestamp: PropTypes.instanceOf(Date).isRequired,
   }).isRequired,
   author: PropTypes.shape({
     avatar: PropTypes.string.isRequired,
