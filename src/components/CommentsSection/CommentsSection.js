@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { formatDistanceToNow } from 'date-fns'
 
 const CommentsSection = ({ style, comments }) => {
   console.log(comments)
@@ -7,7 +8,10 @@ const CommentsSection = ({ style, comments }) => {
       <h1>{comments.length} Comments</h1>
       <div>
         {comments.map(comment => (
-          <p key={comment.id}>{comment.comment}</p>
+          <>
+            <p key={comment.id}>{comment.comment}</p>
+            <p>{formatDistanceToNow(comment.timestamp)}</p>
+          </>
         ))}
       </div>
     </div>
