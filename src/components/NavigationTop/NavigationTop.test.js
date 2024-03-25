@@ -27,4 +27,14 @@ describe('NavigationTop', () => {
     fireEvent.click(firstButton)
     expect(mockSetMenuOpen).toHaveBeenCalled()
   })
+
+  test('icon kebab renders when prop isLogged is false', () => {
+    render(
+      <Router>
+        <NavigationTop isLogged={false} />
+      </Router>,
+    )
+
+    expect(screen.getByText('Icon Kebab')).toBeInTheDocument()
+  })
 })
