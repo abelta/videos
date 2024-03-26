@@ -37,4 +37,14 @@ describe('NavigationTop', () => {
 
     expect(screen.getByText('Icon Kebab')).toBeInTheDocument()
   })
+
+  test('icon create renders when prop isLogged is true', () => {
+    render(
+      <Router>
+        <NavigationTop isLogged={true} />
+      </Router>,
+    )
+
+    expect(screen.getByText('Icon Create')).toBeInTheDocument()
+  })
 })
