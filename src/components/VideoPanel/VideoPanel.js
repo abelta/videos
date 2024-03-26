@@ -13,10 +13,10 @@ import IconDislike from './IconDislike'
 import IconDislikeFilled from './IconDislikeFilled'
 
 const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
-  const { isMobile } = useBreakPoint()
   const [isLottieLikeHidden, setIsLottieLikeHidden] = useState(true)
   const [isDislikeActive, setIsDislikeActive] = useState(false)
   const [isSubscribed, setIsSubscribed] = useState(false)
+  const { isMobile } = useBreakPoint()
 
   const buttonLikeIcon = (
     <>
@@ -91,6 +91,7 @@ const VideoPanel = ({ style, thumbnail, title, author, likes }) => {
             </p>
           </div>
           <Button
+            ariaLabel="button-suscribe"
             style={{
               borderRadius: '50px',
               height: '36px',

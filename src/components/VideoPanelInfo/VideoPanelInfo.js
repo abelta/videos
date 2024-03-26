@@ -15,7 +15,10 @@ const VideoPanelInfo = ({ video, author }) => {
   }
 
   return (
-    <div style={{ background: '#dbdbdb', borderRadius: '10px' }}>
+    <div
+      style={{ background: '#dbdbdb', borderRadius: '10px' }}
+      data-testid="video-panel-info"
+    >
       <div
         style={{
           display: 'flex',
@@ -77,6 +80,7 @@ const VideoPanelInfo = ({ video, author }) => {
               <div style={{ display: 'flex', marginBottom: '40px' }}>
                 <a href="/" style={{ textDecoration: 'none' }}>
                   <button
+                    aria-label="button-videos"
                     style={{
                       display: 'flex',
                       justifyContent: 'center',
@@ -106,6 +110,7 @@ const VideoPanelInfo = ({ video, author }) => {
                 </a>
                 <a href="/" style={{ textDecoration: 'none' }}>
                   <button
+                    aria-label="button-about"
                     style={{
                       display: 'flex',
                       justifyContent: 'center',
@@ -170,7 +175,7 @@ VideoPanelInfo.propTypes = {
   video: PropTypes.shape({
     description: PropTypes.string.isRequired,
     views: PropTypes.number.isRequired,
-    timestamp: PropTypes.string.isRequired,
+    timestamp: PropTypes.instanceOf(Date).isRequired,
   }).isRequired,
   author: PropTypes.shape({
     avatar: PropTypes.string.isRequired,
