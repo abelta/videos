@@ -1,0 +1,10 @@
+{
+  "transformIgnorePatterns": ["/node_modules/(?!(@bundled-es-modules)/).*/"],
+  "setupFiles": ["./jest.polyfills.js"],
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "Icon",
+    "/index\\.js$",
+    "/mocks/"
+  ]
+}
