@@ -57,43 +57,62 @@ describe('VideoPanelInfo', () => {
   })
 
   describe('the buttons of the extended description', () => {
-    it('width button "videos" is 400px if isMobileView is false"', () => {
-      render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
+    describe('videos button', () => {
+      it('has width 400px if screen size is bigger  than 768px"', () => {
+        window.innerWidth = 800
+        fireEvent(window, new Event('resize'))
+        render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
 
-      const moreButton = screen.getByText('...more')
-      fireEvent.click(moreButton)
+        const moreButton = screen.getByText('...more')
+        fireEvent.click(moreButton)
 
-      const btnVideos = screen.getByRole('button', { name: 'button-videos' })
-      expect(btnVideos).toBeInTheDocument()
-      expect(btnVideos).toHaveStyle('width: 400px')
+        const btnVideos = screen.getByRole('button', { name: 'button-videos' })
+        expect(btnVideos).toBeInTheDocument()
+        expect(btnVideos).toHaveStyle('width: 400px')
+      })
+
+      it('has width 400px if screen size is smaller than 425px"', () => {
+        window.innerWidth = 350
+        fireEvent(window, new Event('resize'))
+
+        render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
+
+        const moreButton = screen.getByText('...more')
+        fireEvent.click(moreButton)
+
+        const btnVideos = screen.getByRole('button', { name: 'button-videos' })
+        expect(btnVideos).toBeInTheDocument()
+        expect(btnVideos).toHaveStyle('width: 138px')
+      })
+
+      it('changes colors onMouseEnter and onMouseLeave', () => {
+        render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
+
+        const moreButton = screen.getByText('...more')
+        fireEvent.click(moreButton)
+
+        const btnVideos = screen.getByRole('button', { name: 'button-videos' })
+
+        fireEvent.mouseEnter(btnVideos)
+        expect(btnVideos).toHaveStyle('background: #9b9b9b; color: black;')
+        fireEvent.mouseLeave(btnVideos)
+        expect(btnVideos).toHaveStyle('background:#dbdbdb; color:black')
+      })
     })
+    describe('about button', () => {
+      it('changes colors onMouseEnter and onMouseLeave', () => {
+        render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
 
-    it('Button "Videos": onMouseEnter and onMouseLeave events background colour changes', () => {
-      render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
+        const moreButton = screen.getByText('...more')
+        fireEvent.click(moreButton)
 
-      const moreButton = screen.getByText('...more')
-      fireEvent.click(moreButton)
+        const btnAbout = screen.getByRole('button', { name: 'button-about' })
 
-      const btnVideos = screen.getByRole('button', { name: 'button-videos' })
-
-      fireEvent.mouseEnter(btnVideos)
-      expect(btnVideos).toHaveStyle('background: #9b9b9b; color: black;')
-      fireEvent.mouseLeave(btnVideos)
-      expect(btnVideos).toHaveStyle('background:#dbdbdb; color:black')
-    })
-
-    it('Button "About": onMouseEnter and onMouseLeave events background colour changes', () => {
-      render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
-
-      const moreButton = screen.getByText('...more')
-      fireEvent.click(moreButton)
-
-      const btnAbout = screen.getByRole('button', { name: 'button-about' })
-
-      fireEvent.mouseEnter(btnAbout)
-      expect(btnAbout).toHaveStyle('background: #9b9b9b; color: black;')
-      fireEvent.mouseLeave(btnAbout)
-      expect(btnAbout).toHaveStyle('background:#dbdbdb; color:black')
+        fireEvent.mouseEnter(btnAbout)
+        expect(btnAbout).toHaveStyle('background: #9b9b9b; color: black;')
+        fireEvent.mouseLeave(btnAbout)
+        expect(btnAbout).toHaveStyle('background:#dbdbdb; color:black')
+      })
     })
   })
 })

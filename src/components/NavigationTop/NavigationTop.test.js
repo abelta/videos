@@ -21,10 +21,10 @@ describe('NavigationTop', () => {
       </Router>,
     )
 
-    const firstButton = screen.getByRole('button', { name: 'menu-burguer' })
-    expect(firstButton).toBeInTheDocument()
+    const btnBurguer = screen.getByRole('button', { name: 'menu-burguer' })
+    expect(btnBurguer).toBeInTheDocument()
 
-    fireEvent.click(firstButton)
+    fireEvent.click(btnBurguer)
     expect(mockSetMenuOpen).toHaveBeenCalled()
   })
 })
