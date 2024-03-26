@@ -28,7 +28,7 @@ describe('NavigationTop', () => {
     expect(mockSetMenuOpen).toHaveBeenCalled()
   })
 
-  test('icon kebab renders when prop isLogged is false', () => {
+  test('renders icon kebab when user is logged', () => {
     render(
       <Router>
         <NavigationTop isLogged={false} />
@@ -38,7 +38,7 @@ describe('NavigationTop', () => {
     expect(screen.getByText('Icon Kebab')).toBeInTheDocument()
   })
 
-  test('icon create renders when prop isLogged is true', () => {
+  test('renders icon create when user is logged', () => {
     render(
       <Router>
         <NavigationTop isLogged={true} />
@@ -46,5 +46,28 @@ describe('NavigationTop', () => {
     )
 
     expect(screen.getByText('Icon Create')).toBeInTheDocument()
+  })
+
+  test('renders icon notification when screen is wider than 425 and user is logged', () => {
+    window.innerWidth = 500
+    fireEvent(window, new Event('resize'))
+
+    render(
+      <Router>
+        <NavigationTop isLogged={true} />
+      </Router>,
+    )
+
+    expect(screen.getByText('Icon Notification')).toBeInTheDocument()
+  })
+
+  test('renders login button when user is not logged', () => {
+    render(
+      <Router>
+        <NavigationTop isLogged={false} />
+      </Router>,
+    )
+
+    expect(screen.getByText('Inicio sesión')).toBeInTheDocument()
   })
 })
