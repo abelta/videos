@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { React, useState } from 'react'
 import { useBreakPoint } from 'hooks'
 import PropTypes from 'prop-types'
 import { formatDistanceToNow } from 'date-fns'
 import { formatCompactNumber } from 'utils'
 import { AboutIcon, VideoIcon } from './Icons'
 
-const VideoPanelInfo = ({ style, video, author }) => {
+const VideoPanelInfo = ({ video, author, style }) => {
   const [showFullDescription, setShowFullDescription] = useState(false)
   const { isMobile, isMobileLarge } = useBreakPoint()
   const isMobileView = isMobile || isMobileLarge
@@ -16,7 +16,10 @@ const VideoPanelInfo = ({ style, video, author }) => {
 
   return (
     <div style={style}>
-      <div style={{ background: '#dbdbdb', borderRadius: '10px' }}>
+      <div
+        style={{ background: '#dbdbdb', borderRadius: '10px' }}
+        data-testid="video-panel-info"
+      >
         <div
           style={{
             display: 'flex',
@@ -78,6 +81,7 @@ const VideoPanelInfo = ({ style, video, author }) => {
                 <div style={{ display: 'flex', marginBottom: '40px' }}>
                   <a href="/" style={{ textDecoration: 'none' }}>
                     <button
+                      aria-label="button-videos"
                       style={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -107,6 +111,7 @@ const VideoPanelInfo = ({ style, video, author }) => {
                   </a>
                   <a href="/" style={{ textDecoration: 'none' }}>
                     <button
+                      aria-label="button-about"
                       style={{
                         display: 'flex',
                         justifyContent: 'center',
