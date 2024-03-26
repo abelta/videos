@@ -56,6 +56,11 @@
     "transformIgnorePatterns": [
       "/node_modules/(?!(@bundled-es-modules)/).*/"
     ],
-    "coveragePathIgnorePatterns": ["/node_modules/", "Icon", "/index\\.js$", "/mocks/"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "Icon",
+      "/index\\.js$",
+      "/mocks/"
+    ]
   }
 }
