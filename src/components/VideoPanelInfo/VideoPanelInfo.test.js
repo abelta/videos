@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { formatDistanceToNow } from 'date-fns'
 import { user, video } from 'mocks'
 import { VideoPanelInfo } from 'components'
@@ -13,14 +13,19 @@ describe('VideoPanelInfo', () => {
 
   beforeEach(() => {
     videoDetail = video()
-    const u = user()
-    authorDetail = { ...u, subscribers: u.subscriberNumber }
+    const userData = user()
+    authorDetail = { ...userData, subscribers: userData.subscriberNumber }
   })
 
   describe('renders', () => {
     it('renders', () => {
       render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
       expect(screen.getByTestId('video-panel-info')).toBeInTheDocument()
+    })
+
+    it('show "...more" button', () => {
+      render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
+      expect(screen.getByText('...more').tagName).toBe('BUTTON')
     })
 
     it('contains video information', () => {
@@ -30,17 +35,24 @@ describe('VideoPanelInfo', () => {
         screen.getByText(formatDistanceToNow(videoDetail.timestamp)),
       ).toBeInTheDocument()
     })
-
-    it.skip('contains author information', () => {})
   })
 
-  describe.skip('open button', () => {
-    describe('is clicked once', () => {
-      it.skip('opens panel', () => {})
+  describe.skip('comments button', () => {
+    it('button "...more" is clicked and is changed to "show less"', () => {
+      render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
+
+      const moreButton = screen.getByText('...more')
+      fireEvent.click(moreButton)
+      expect(moreButton.textContent).toBe('Show less')
     })
 
-    describe('is clicked twice', () => {
-      it.skip('closes panel', () => {})
+    it('button "...more" is clicked twice and dont change', () => {
+      render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
+
+      const moreButton = screen.getByText('...more')
+      fireEvent.click(moreButton)
+      fireEvent.click(moreButton)
+      expect(moreButton.textContent).toBe('...more')
     })
   })
 })

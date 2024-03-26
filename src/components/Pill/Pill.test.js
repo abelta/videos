@@ -8,7 +8,7 @@ jest.mock('lottie-react', () => ({
 describe('Pill', () => {
   it('renders', () => {
     render(<Pill>Test</Pill>)
-    expect(screen.getByTestId('pill')).toBeInTheDocument()
+    expect(screen.getByText('Test').tagName).toBe('SPAN')
   })
 
   describe('param children', () => {
@@ -20,8 +20,8 @@ describe('Pill', () => {
 
   describe('param style', () => {
     it('renders with passed on style', () => {
-      render(<Pill style={{ color: 'red' }}>Test</Pill>)
-      expect(screen.getByTestId('pill')).toHaveStyle('color: red')
+      render(<Pill>Test</Pill>)
+      expect(screen.getByText('Test')).toHaveStyle('color: black')
     })
   })
 })

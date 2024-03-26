@@ -37,13 +37,8 @@ describe('getHomeVideos', () => {
     expect(result.nextPage).toBe(result.currentPage + 1)
   })
 
-  test.skip('handles errors properly', async () => {
-    jest
-      .spyOn(global, 'fetch')
-      .mockImplementation(() => Promise.reject(new Error('Fetch failed')))
-
-    await expect(getHomeVideos()).rejects.toThrow('Fetch failed')
-
-    global.fetch.mockRestore()
+  it('handles fetch error properly', async () => {
+    global.fetch = jest.fn().mockRejectedValue(new Error('Fetch failed'))
+    await expect(getHomeVideos({ page: 0 })).rejects.toThrow('Fetch failed')
   })
 })
