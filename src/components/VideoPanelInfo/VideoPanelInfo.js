@@ -80,6 +80,7 @@ const VideoPanelInfo = ({ video, author }) => {
               <div style={{ display: 'flex', marginBottom: '40px' }}>
                 <a href="/" style={{ textDecoration: 'none' }}>
                   <button
+                    aria-label="button-videos"
                     style={{
                       display: 'flex',
                       justifyContent: 'center',
@@ -109,6 +110,7 @@ const VideoPanelInfo = ({ video, author }) => {
                 </a>
                 <a href="/" style={{ textDecoration: 'none' }}>
                   <button
+                    aria-label="button-about"
                     style={{
                       display: 'flex',
                       justifyContent: 'center',

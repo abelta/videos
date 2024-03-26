@@ -37,7 +37,7 @@ describe('VideoPanelInfo', () => {
     })
   })
 
-  describe('comments button', () => {
+  describe('description button', () => {
     it('button "...more" is clicked and is changed to "show less"', () => {
       render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
 
@@ -53,6 +53,47 @@ describe('VideoPanelInfo', () => {
       fireEvent.click(moreButton)
       fireEvent.click(moreButton)
       expect(moreButton.textContent).toBe('...more')
+    })
+  })
+
+  describe('the buttons of the extended description', () => {
+    it('width button "videos" is 400px if isMobileView is false"', () => {
+      render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
+
+      const moreButton = screen.getByText('...more')
+      fireEvent.click(moreButton)
+
+      const btnVideos = screen.getByRole('button', { name: 'button-videos' })
+      expect(btnVideos).toBeInTheDocument()
+      expect(btnVideos).toHaveStyle('width: 400px')
+    })
+
+    it('Button "Videos": onMouseEnter and onMouseLeave events background colour changes', () => {
+      render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
+
+      const moreButton = screen.getByText('...more')
+      fireEvent.click(moreButton)
+
+      const btnVideos = screen.getByRole('button', { name: 'button-videos' })
+
+      fireEvent.mouseEnter(btnVideos)
+      expect(btnVideos).toHaveStyle('background: #9b9b9b; color: black;')
+      fireEvent.mouseLeave(btnVideos)
+      expect(btnVideos).toHaveStyle('background:#dbdbdb; color:black')
+    })
+
+    it('Button "About": onMouseEnter and onMouseLeave events background colour changes', () => {
+      render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
+
+      const moreButton = screen.getByText('...more')
+      fireEvent.click(moreButton)
+
+      const btnAbout = screen.getByRole('button', { name: 'button-about' })
+
+      fireEvent.mouseEnter(btnAbout)
+      expect(btnAbout).toHaveStyle('background: #9b9b9b; color: black;')
+      fireEvent.mouseLeave(btnAbout)
+      expect(btnAbout).toHaveStyle('background:#dbdbdb; color:black')
     })
   })
 })
