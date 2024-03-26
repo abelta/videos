@@ -37,7 +37,7 @@ describe('VideoPanelInfo', () => {
     })
   })
 
-  describe.skip('comments button', () => {
+  describe('comments button', () => {
     it('button "...more" is clicked and is changed to "show less"', () => {
       render(<VideoPanelInfo video={videoDetail} author={authorDetail} />)
 
