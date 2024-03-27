@@ -1,10 +1,12 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { getHomeVideos } from 'api'
 
-export default () =>
+const useHomeVideos = () =>
   useInfiniteQuery({
     queryKey: ['homeVideos'],
     queryFn: getHomeVideos,
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.nextPage,
   })
+
+export default useHomeVideos
