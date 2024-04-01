@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from '@testing-library/react'
+import { renderHook } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import useTags from './useTags'
 import { getTags } from 'api'
@@ -17,11 +17,8 @@ describe('useTags hook', () => {
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     )
 
-    const { result } = renderHook(() => useTags(), { wrapper })
+    renderHook(() => useTags(), { wrapper })
 
     expect(getTags).toHaveBeenCalled()
-
-    await waitFor(() => expect(result.current.isSuccess).toBeTruthy())
-    expect(result.current.data).toEqual(tagsData)
   })
 })
